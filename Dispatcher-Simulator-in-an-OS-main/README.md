@@ -2,7 +2,7 @@
 A program to mimic how processes are managed by the dispatcher in an OS, developed in C on a Linux OS.<br>
 <h4>A Brief Description of the Program</h4>
 The program mimics the functioning of a dispatcher in an OS. After receiving requests from the client (in this specific program, to invoke a function call with client specified arguments from the DLL), the request listener adds them to a request queue, managed by one thread pool (with the number of threads specified by the user). Further, each request is dequeued from the request queue one after another by the dispatcher to execute the client requests, and is handled by another thread pool (with the number of threads executing once again being user specified). A limit on the amount of shared memory and files would also be taken as a user specified quantity and would be enforced throughout execution.
-<img src="/img/program_working.png">
+<img src="img/program_working.png">
 <br>
 <h4>Working of the Program</h4>
 Initially, on executing either the server or client programs, a similar function by the name ‘create_socket’ is run, to create a network socket and enable bidirectional communication between the server and client.<br><br>
@@ -19,7 +19,7 @@ Further, a limit (both hard and soft, definitions specified via API’s)is set o
 <i>send_msg_to_server_via_socket</i> (from <i>client.c</i>): This function takes the client request parameters (given via command line) and sends them sequentially to the server for processing. (the number of parameters being sent are sent before the actual parameters themselves though).<br><br>
 <i>get_dll_answer</i> (from <i>dll.h</i>): This function returns the string of the answer for the client request, after invoking the DLL, and constructing the handle.<br><br>
 The DLL <i>/lib/x86_64-linux-gnu/libm.so.6</i> is compatible to run in this program with the following functions:<br>
-<img src="/img/functions_supported.png">
+<img src="img/functions_supported.png">
 To optimise the code since the number of arguments across all functions chosen is uniform and equal to 1, the structure for the request has slightly been modified from the assignment sheet (since creative liberty has been mentioned to be taken whenever appropriate), visible in the <i>server.c</i> file.<br><br>
 The <i>unit_testing.c</i> file contains a large number of test cases to confirm the working of many functions but is not exhaustive of all the different functions and capabilities of the code.<br><br>
 Mutex has been added to the code as a standard practice to prevent interference.<br><br>
